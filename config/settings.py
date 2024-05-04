@@ -28,12 +28,13 @@ DJANGO_APPS = [
 ]
 
 LOCAL_APPS= [
-
-
+        'apps.dashboard',
+    
 ]
 
 OTHER_APPS = [
-
+    'allauth',
+    'allauth.account',
 ]
 
 INSTALLED_APPS = OTHER_APPS + DJANGO_APPS + LOCAL_APPS
@@ -52,10 +53,22 @@ DJANGO_MIDDELWARE = [
 LOCAL_MIDDELWARE = [
 
 ]
-OTHER_MIDDLEWARE = []
+OTHER_MIDDLEWARE = [
+    "allauth.account.middleware.AccountMiddleware",
+]
 
 MIDDLEWARE = OTHER_MIDDLEWARE + DJANGO_MIDDELWARE + LOCAL_MIDDELWARE
 
+
+AUTHENTICATION_BACKENDS = [
+ 
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by email
+    'allauth.account.auth_backends.AuthenticationBackend',
+
+]
 
 
 ROOT_URLCONF = 'config.urls'
@@ -71,6 +84,10 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                # `allauth` needs this from django
+                'django.template.context_processors.request',
+
             ],
         },
     },
@@ -123,8 +140,12 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "mediafiles")
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+LOGIN_REDIRECT_URL = 'admin'
