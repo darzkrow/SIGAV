@@ -29,6 +29,7 @@ DJANGO_APPS = [
 
 LOCAL_APPS= [
         'apps.dashboard',
+        'apps.gav',
     
 ]
 
