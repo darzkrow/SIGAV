@@ -35,6 +35,8 @@ LOCAL_APPS= [
 OTHER_APPS = [
     'allauth',
     'allauth.account',
+     'crispy_forms',
+    'crispy_bootstrap5', 
 ]
 
 INSTALLED_APPS = OTHER_APPS + DJANGO_APPS + LOCAL_APPS
@@ -76,7 +78,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -148,4 +150,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "mediafiles")
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+ACCOUNT_EMAIL_VERIFICATION = "none"
 LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
