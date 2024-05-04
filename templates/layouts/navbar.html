@@ -23,10 +23,21 @@
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
              <span class="hidden-xs">
      
-     
+              {% if request.user.profile.avatar %}
+              <img
+                class="img-circle elevation-2 user-image"
+                src="{{ request.user.profile.avatar.url }}"
+                alt="Fotografía"
+              />
+              {% else %}
+              <img
+                src="{% static 'dist/img/user2-160x160.jpg' %}"
+                class="img-circle elevation-2 user-image"
+                alt="User Image"
+              />
+              {% endif %}
          
-                <img src="{% static 'dist/img/user2-160x160.jpg' %}"class="user-image" alt="User Image" />
-    
+              
    
 {% comment %}   
           {% if user.first_name and user.last_name %}
