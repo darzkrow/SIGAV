@@ -5,7 +5,7 @@ from django.db.models.signals import post_save
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    dni = models.CharField('Cedula',max_length=10, unique=True)
+    dni = models.CharField('Cedula',max_length=10, null=True, blank=True)
     avatar = models.ImageField(upload_to='profiles',  default='users/default.jpg',null=True, blank=True)
     bio = models.TextField(null=True, blank=True)
 
@@ -23,8 +23,6 @@ def create_user_profiles(sender, instance, created, **kwargs):
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
 post_save.connect(create_user_profiles, sender=User)
-
-
 
 #######################################################################################################
 ################## CONFIGURACION BASICA PARA LA GESTION DE VISITAS AL PERSONAL  #######################
@@ -87,4 +85,4 @@ class Empleado(models.Model):
         verbose_name_plural = 'Personal'
 
     def __str__(self):
-        return self.cedula
+        return self.cedemp
