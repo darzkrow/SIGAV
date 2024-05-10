@@ -85,4 +85,4 @@ class Empleado(models.Model):
         verbose_name_plural = 'Personal'
 
     def __str__(self):
-        return self.cedemp
+        return f"{self.cedemp} - {self.nEmp} {self.aEmp}"

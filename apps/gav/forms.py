@@ -6,8 +6,7 @@ from .models import Personas, Avisitantes
 
 
 class SearchForm(forms.Form):
-    
-      dni = forms.CharField(
+        dni = forms.CharField(
         label='',
         max_length=10,
         widget=forms.TextInput(attrs={
@@ -64,17 +63,34 @@ class PersonForms(forms.ModelForm):
         return person
 
 
-class AccessForm(forms.ModelForm):
+class AccessForms(forms.ModelForm):
     class Meta:
         model = Avisitantes
-        fields =  '__all__'
+        fields = ['entry','hours','hoursEx', 'empleado', 'oficina','cargo','obs']
         widgets = {
             'entry': forms.DateInput(attrs={'type': 'date','class': 'form-control'}),
             'hours': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
             'hoursEx': forms.TimeInput(attrs={'type': 'time','class': 'form-control'}),
-            'departaments': forms.Select(attrs={'class': 'form-control'}),
-           
-            'obs': forms.Textarea(attrs={'class': 'form-control', 'rows': '3'}),
+            'empleado': forms.Select(attrs={'class': 'form-control'}),
+            'oficina': forms.Select(attrs={'class': 'form-control'}),
+            'cargo': forms.Select(attrs={'class': 'form-control'}),
+            'obs': forms.Textarea(attrs={'class': 'form-control'}),
            
         }
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if self.instance.id:  # Si el objeto ya existe
+            self.fields['entry'].widget = forms.TextInput(attrs={'class': 'form-control', 'readonly': 'readonly'})
+            self.fields['entry'].widget.attrs['readonly'] = True 
+            self.fields['hours'].widget.attrs['readonly'] = True 
 
+    def clean(self):
+        cleaned_data = super().clean()
+        if self.instance.id:
+            if cleaned_data['entry']!=self.instance.entry:
+                raise forms.ValidationError('No se permite modificar la Fecha')
+            if cleaned_data['hours']!=self.instance.hours:
+                raise forms.ValidationError('No se permite modificar la hora de Entrada')
+
+        return cleaned_data
+          

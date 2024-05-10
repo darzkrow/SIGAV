@@ -38,6 +38,7 @@ OTHER_APPS = [
     'allauth.account',
      'crispy_forms',
     'crispy_bootstrap5', 
+
 ]
 
 INSTALLED_APPS = OTHER_APPS + DJANGO_APPS + LOCAL_APPS
@@ -59,6 +60,7 @@ LOCAL_MIDDELWARE = [
 ]
 OTHER_MIDDLEWARE = [
     "allauth.account.middleware.AccountMiddleware",
+    
 ]
 
 MIDDLEWARE = OTHER_MIDDLEWARE + DJANGO_MIDDELWARE + LOCAL_MIDDELWARE

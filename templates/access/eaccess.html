@@ -8,11 +8,11 @@
 {% comment %}MUESTRA LA UBICACION ACTUAL DE{% endcomment %}
 
 {% block titlecontent %}
-<i class="fas fa-user-plus"> REGISTRAR DE NUEVO VISITANTE</i>
+<i class="fas fa-user-plus"> </i>
 {% endblock %}
 
 {% block titlemenu %}
-  REGISTRO DE NUEVO VISITANTE
+ 
 {% endblock %}
 
 {% block content %}
@@ -25,7 +25,7 @@
         <div class="col-4">
           <div class="card card-primary">
             <div class="card-header">
-              <i class="fas fa-user-plus"> Nuevo Registro   </i> 
+              <i class="fas fa-user-plus">Editar ACCESSO</i> 
                     
             </div>
             {% load crispy_forms_tags %}
@@ -35,8 +35,8 @@
                 <div class="form">
                   <div class="col-auto">
             
-                    {{ form| crispy}}
-                    <input type="submit" class="btn btn-primary btn-block mt-3 form-control" value="Guardar" />
+                    {{ form}}
+                    <input type="submit" class="btn btn-primary btn-block mt-3 form-control" value="Guardar" </>
                   </div>
                 
                 </div>
@@ -49,6 +49,8 @@
       </div>
     </div>
   </div>
+
+
 
 
 {% endblock %}
