@@ -2,9 +2,6 @@ from django import forms
 from django.core.validators import RegexValidator
 from .models import Personas, Avisitantes
 
-
-
-
 class SearchForm(forms.Form):
         dni = forms.CharField(
         label='',
@@ -14,13 +11,9 @@ class SearchForm(forms.Form):
             'placeholder': 'Escriba el numero de Identificación'
         })
     )
-
-
-
 class PersonForms(forms.ModelForm):
     dni_validator = RegexValidator(r'^\d{6,10}$', 'Ingrese solo números válidos con un mínimo de 6 dígitos.')
     name_validator = RegexValidator(r'^[a-zA-ZáéíóúÁÉÍÓÚ\s]+$', 'Ingrese solo letras válidas para el nombre.')
-
     class Meta:
         model = Personas
         fields = ['nac', 'dni', 'first_name', 'last_name', 'gender','status']
@@ -30,7 +23,7 @@ class PersonForms(forms.ModelForm):
             'first_name': forms.TextInput(attrs={'class': 'form-control'}),
             'last_name': forms.TextInput(attrs={'class': 'form-control'}),
             'gender': forms.Select(attrs={'class': 'form-control'}),
-             'status': forms.Select(attrs={'class': 'form-control'}),
+            'status': forms.Select(attrs={'class': 'form-control'}),
         }
 
     def __init__(self, *args, **kwargs):
@@ -62,7 +55,6 @@ class PersonForms(forms.ModelForm):
             person.save()
         return person
 
-
 class AccessForms(forms.ModelForm):
     class Meta:
         model = Avisitantes
@@ -83,6 +75,9 @@ class AccessForms(forms.ModelForm):
             self.fields['entry'].widget = forms.TextInput(attrs={'class': 'form-control', 'readonly': 'readonly'})
             self.fields['entry'].widget.attrs['readonly'] = True 
             self.fields['hours'].widget.attrs['readonly'] = True 
+            self.fields['empleado'].widget.attrs['disabled'] = True 
+            self.fields['oficina'].widget.attrs['disabled'] = True 
+            self.fields['cargo'].widget.attrs['disabled'] = True 
 
     def clean(self):
         cleaned_data = super().clean()
@@ -93,4 +88,6 @@ class AccessForms(forms.ModelForm):
                 raise forms.ValidationError('No se permite modificar la hora de Entrada')
 
         return cleaned_data
-          
+       
+
+                                                                                                                                                  
