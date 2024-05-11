@@ -50,7 +50,7 @@ class Avisitantes(models.Model):
     class Meta:
         verbose_name = "Listado Accesos"
         verbose_name_plural = "Listado Accesos"
-        ordering = ['-entry', '-hours']
+        ordering = ['-entry', 'hours']
 
     def __str__(self):
         return f"{self.visitor.dni} {self.entry} {self.hours}"

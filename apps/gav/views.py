@@ -31,11 +31,16 @@ def SearchPerson(request):
 @permission_required('gav.add_personas')
 def lperson(request):
     # SE CREA LA LISTA DE PERSONAS
-    persons = Personas.objects.all().order_by('-dni')
-    paginator = Paginator(persons, 8)  
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-    return render(request, 'person/lperson.html', {'page_obj': page_obj})
+    try:
+        persons = Personas.objects.all().order_by('dni')
+        paginator = Paginator(persons, 8)  
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        context = {
+            'page_obj': page_obj}
+        return render(request, 'person/lperson.html', context)
+    except Personas.DoesNotExist:
+        return render(request, 'accesss/notfound.html')
 
 @login_required
 @permission_required('gav.view_personas')
@@ -97,10 +102,16 @@ def eperson(request, dni):
 @permission_required('gav.view_avisitantes')
 def laccess(request):
     # SE CREA LA LISTA DE ACCESOS
-    laccess = Avisitantes.objects.all().order_by('visitor')
-    return render(request, 'access/laccess.html', {'laccess':laccess})
-
-
+    try:
+        laccess = Avisitantes.objects.all().order_by('-entry','-hours')
+        paginator = Paginator(laccess, 10)  
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        context = {
+            'page_obj': page_obj}
+        return render(request, 'access/laccess.html', context)
+    except Personas.DoesNotExist:
+        return render(request, 'accesss/notfound.html')
 
 
 @login_required

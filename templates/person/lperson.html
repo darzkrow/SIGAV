@@ -38,7 +38,9 @@
                     <th scope="col">Cedula</th>
                     <th scope="col">Nombre</th>
                     <th scope="col">Apellido</th>
+
                     <th scope="col">Tipo de Visitante</th>
+                    <th scope="col">Genero</th>
                     <th scope="col">Opciones</th>
                   </tr>
                 </thead>
@@ -51,6 +53,13 @@
                       <td>{{ person.first_name }}</td>
                       <td>{{ person.last_name }}</td>
                       <td>{{ person.get_status_display}}</td>
+                      {%load static%}
+                      <td>  {% if person.gender == 'M' %}
+                        <i class="fas fa-mars" style="color :blue"> </i> {{ person.get_gender_display}}
+              {% else %}
+              <i class="fas fa-venus" style="color:pink"> </i> {{ person.get_gender_display}}
+      {% endif %}
+    </td>
                       <td>
                    <a class="btn btn-sm btn-info" href="{% url 'dperson' dni=person.dni %}"><i class="fa fa-eye" aria-hidden="true"></i></a>
                    {% if perms.gav.change_personas%}

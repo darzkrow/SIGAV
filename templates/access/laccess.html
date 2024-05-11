@@ -42,7 +42,7 @@ Listado de Accesos
                   </tr>
                 </thead>
                 <tbody>
-                  {% for laccess in laccess %}
+                  {% for laccess in page_obj %}
              
               <tr>
                       <th>{{ forloop.counter }}</th>
@@ -72,6 +72,41 @@ Listado de Accesos
 
 
             </div>
+            <nav aria-label="Page navigation example px-6">
+              <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                  <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+                  </li>
+                {% else %}
+                  <li class="page-item disabled">
+                    <a class="page-link">Anterior</a>
+                  </li>
+                {% endif %}
+            
+                {% for page in page_obj.paginator.page_range %}
+                  {% if page == page_obj.number %}
+                    <li class="page-item active">
+                      <a class="page-link" href="?page={{ page }}">{{ page }}</a>
+                    </li>
+                  {% else %}
+                    <li class="page-item">
+                      <a class="page-link" href="?page={{ page }}">{{ page }}</a>
+                    </li>
+                  {% endif %}
+                {% endfor %}
+            
+                {% if page_obj.has_next %}
+                  <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+                  </li>
+                {% else %}
+                  <li class="page-item disabled">
+                    <a class="page-link">Siguiente</a>
+                  </li>
+                {% endif %}
+              </ul>
+            </nav>
           </div>
         </div>
       </div>

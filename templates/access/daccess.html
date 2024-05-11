@@ -76,16 +76,20 @@
                       <label for="horaEnt" class="form-label">Hora de Entrada:</label>
                       <input type="text" class="form-control" disabled id="horaEnt" value="{{ access.hours|date:"h:i A"}}">
                     </div>
-
+                    <div class="col-md-6">
+                      <label for="fecha" class="form-label">Empleado a Visitar: </label>
+                      <input type="text"  class="form-control" disabled id="fecha"value="{{ access.empleado }}">
+                    </div>
+                    <div class="col-md-6">
+                      <label for="horaEnt" class="form-label">Hora de Entrada:</label>
+                      <input type="text" class="form-control" disabled id="horaEnt" value="{{ access.oficina}}">
+                    </div>
                     <div class="col-md-6">
                         <label for="horaEnt" class="form-label">Hora de Salida:</label>
                         <input type="text" class="form-control" disabled id="horaEnt" value="{{ access.hoursEx |date:"h:i A"}}">
                       </div>
 
-                    <div class="col-12">                       
-                      <label for="oficina" class="form-label">Oficina a Visitar</label>
-                      <input type="text" class="form-control" id="oficina" disabled value="{{ access.departaments }}">
-                    </div>
+             
                     <div class="col-12">
                       <label for="observacion" class="form-label">Observacion</label>
                       <textarea class="form-control" disabled id="observacion" style="height: 100px">

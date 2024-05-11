@@ -10,7 +10,7 @@ in<aside class="main-sidebar elevation-4 sidebar-dark-primary">
       class="brand-image img-circle elevation-3"
       style="opacity: 0.8"
     />
-    <span class="brand-text font-weight-light"><b>SIGAP</b> <sub>LTE</sub> <sup> 1.0</sup></span>
+    <span class="brand-text font-weight-light"><b>S.C.V</b> <sub>LTE</sub> <sup> 1.1</sup></span>
   </a>
 
   <!-- Sidebar -->
@@ -90,7 +90,7 @@ in<aside class="main-sidebar elevation-4 sidebar-dark-primary">
                 href="{% url 'lperson' %}"
                 class="nav-link {% if request.resolver_match.url_name == 'lperson' %}active{% endif %}"
               >
-              <i class="fas fa-user-friends"></i>
+              <i class="fas fa-users"></i>
                 <p>Personas Registradas</p>
               </a>
             </li> 
@@ -100,7 +100,7 @@ in<aside class="main-sidebar elevation-4 sidebar-dark-primary">
                 href="{% url 'laccess' %}"
                 class="nav-link {% if request.resolver_match.url_name == 'laccess' %}active{% endif %}"
               >
-              <i class="fas fa-user-friends"></i>
+              <i class="fas fa-clipboard-list"></i>
                 <p>Acceso Registrado</p>
               </a>
             </li>
@@ -110,76 +110,6 @@ in<aside class="main-sidebar elevation-4 sidebar-dark-primary">
     
         </li> 
         {%endif%}
-        <!-- FIN DEL MENU PARA EL SISTEMA DE CONTROL DE VISITAS-->
-
-        {% comment %} <li class="nav-item menu-open">
-          <a href="" class="nav-link">
-            <i class="fas fa-building nav-icon"></i>
-            <p>
-              S. GESTION VISITANTE
-              <i class="right fas fa-angle-left"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a
-                href="{% url 'index' %}"
-                class="nav-link {% if request.resolver_match.url_name == 'index' %}active{% endif %}"
-              >
-                <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>Panel de Control</p>
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a
-                href="{% url 'Eventos-SEG' %}"
-                class="nav-link {% if request.resolver_match.url_name == 'Eventos-SEG' %}active{% endif %}"
-              >
-                <i class="fas fa-book nav-icon"></i>
-
-                <p>Libro de Novedades</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a
-                href="{% url 'search' %}"
-                class="nav-link {% if request.resolver_match.url_name == 'search' %}active{% endif %}"
-              >
-                <i class="fas fa-user-shield nav-icon"></i>
-
-                <p>Buscar Visitante</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a
-                href="{% url 'lperson' %}"
-                class="nav-link {% if request.resolver_match.url_name == 'lperson' %}active{% endif %}"
-              >
-                <i class="fas fa-torii-gate nav-icon"></i>
-                <p>Visitantes Registrado</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a
-                href="{% url 'laccess' %}"
-                class="nav-link {% if request.resolver_match.url_name == 'laccess' %}active{% endif %}"
-              >
-                <i class="fas fa-flag nav-icon"></i>
-                <p>Reporte de Accesos</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a
-                href="{% url 'tperson' %}"
-                class="nav-link {% if request.resolver_match.url_name == 'tperson' %}active{% endif %}"
-              >
-                <i class="nav-icon fas fa-trash"></i>
-                <p>Papelera de Reciclaje</p>
-              </a>
-            </li>
-          </ul>
-        </li> {% endcomment %}
 
         {% if request.user.is_staff %}
         <li class="nav-item menu-open">
@@ -187,7 +117,7 @@ in<aside class="main-sidebar elevation-4 sidebar-dark-primary">
             href="/admin"
             class="nav-link {% if request.resolver_match.url_name == 'admin' %}active{% endif %}"
           >
-            <i class="nav-icon fas fa-tachometer-alt"></i>
+          <i class="fas fa-shield-alt"></i>
             <p>
               Panel de Seguridad 
               <i class="fas fa-cogs"></i>
