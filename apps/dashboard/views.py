@@ -2,11 +2,18 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .forms import ProfileForm
 from .models import Profile
+
+from apps.gav.models import Personas, Avisitantes
 # Create your views here.
 
 @login_required
 def Dashboard(request):
-    return render(request, 'dashboard/home.html')
+    pcount = Personas.objects.all().count
+    acount= Avisitantes.objects.all().count()
+  
+    return render(request,'dashboard/home.html', {'pcount':pcount, 'acount':acount})
+
+
 
 @login_required
 def profile_detail(request, pk):

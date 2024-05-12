@@ -1,7 +1,8 @@
 from django.db import models
+from django.conf import settings
 from django.core.validators import MinLengthValidator
-from apps.dashboard.models import Empleado, Cargo, Oficina
-
+from apps.dashboard.models import Empleado, Oficina
+from django.utils.html import format_html
 # Create your models here.
 
 
@@ -35,7 +36,9 @@ class Personas(models.Model):
 
    
     def __str__(self):
-        return f"{self.dni} "
+        return f"{self.dni}"
+    
+ 
     
 class Avisitantes(models.Model):
     visitor = models.ForeignKey(Personas, on_delete=models.CASCADE)
@@ -44,7 +47,7 @@ class Avisitantes(models.Model):
     hoursEx = models.TimeField('Hora de Salida', null=True, blank=True)
     empleado = models.ForeignKey(Empleado, on_delete=models.CASCADE, verbose_name='Nombre del Empleados')
     oficina = models.ForeignKey(Oficina, on_delete=models.CASCADE, verbose_name='Oficina a Visitar')
-    cargo = models.ForeignKey(Cargo, on_delete=models.CASCADE, verbose_name='Cargo')
+
     obs = models.TextField('Observaciones', max_length=140, null=True, blank=True)
 
     class Meta:

@@ -1,7 +1,7 @@
 .venv
 .env
 venv/
-
+salasituacional/
 __pycache__
 
 statisfiles/

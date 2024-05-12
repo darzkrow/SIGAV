@@ -58,17 +58,7 @@ class Oficina(models.Model):
         return self.noficina
 
 
-class Cargo(models.Model):
-    cargo = models.CharField('Cargo', max_length=60, unique=True)
-    oficina = models.ForeignKey(Oficina, on_delete=models.CASCADE)
-
-    class Meta:
-        verbose_name = 'Cargo'
-        verbose_name_plural = 'Cargos'
-
-    def __str__(self):
-        return self.cargo
-    
+ 
 
 class Empleado(models.Model):
     cedemp = models.CharField('Cedula', max_length=10,  unique=True)
@@ -77,8 +67,7 @@ class Empleado(models.Model):
         'Apellido', max_length=60, null=False)
     empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE)
     oficina = models.ForeignKey(Oficina, on_delete=models.CASCADE)
-    cargo = models.ForeignKey(Cargo, on_delete=models.CASCADE)
-
+   
 
     class Meta:
         verbose_name = 'Personal'

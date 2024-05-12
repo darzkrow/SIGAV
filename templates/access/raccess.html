@@ -30,7 +30,7 @@
                 <img class="profile-user-img img-fluid img-circle"  src="{% static '/dist/img/avatar4.png' %}" alt="Male">
         {% else %}
         <img class="profile-user-img img-fluid img-circle" src="{% static '/dist/img/avatar3.png' %}" alt="Female">
-{% endif %}
+        {% endif %}
               </div>
 
               <h3 class="profile-username text-center">{{ person_accessget_Nac_display }}</h3>
@@ -48,30 +48,91 @@
                   <b>Apellido:</b> <a class="float-right">{{ person_access.last_name|upper }}</a>
                 </li>
               </ul>
-                 <a class="btn  btn-success btn-block" href="{%url 'dperson' person_access.dni %}"><i class="fa fa-eye" aria-hidden="true"></i> REGRESAR</a>
+         <a class="btn  btn-success btn-block" href="{%url 'dperson' person_access%}"><i class="fa fa-eye" aria-hidden="true"></i> REGRESAR</a>
 
             </div>
           </div>
         </div>
         {% load crispy_forms_tags %}
-        <div class="col-mb-4">
+        <div class="col-8">
           <div class="card">
-            <div class="card-header">
-              <h5 class="m-0">Nuevo ACCESO</h5>
+            <div class="card-header bg-success">
+              <h5 class="m-0">REGISTAR UN NUEVO ACCESO A LA SEDE </h5>
             </div>
             <div class="card-body">
               <form method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                <div class="form-row align-items-center">
-                  <div class="col-auto">{{ form | crispy}}
-                    <input type="submit" class="btn btn-primary btn-block mt-3 form-control" value="Guardar" />
+    {% csrf_token %}
+                  <div class="row">
+                      <div class="col-xs-6 col-sm-6 col-md-6">
+                          <div class="form-group">
+                              <label for="nombre">Fecha:</label>
+                   {{form.entry}}
+                          </div>
+                      </div>
+          
+                      <div class="col-xs-6 col-sm-6 col-md-6">
+                          <div class="form-group">
+                              <label for="apellido">Hora de Entrada:</label>
+                             {{form.hours}}
+                          </div>
+                      </div>
                   </div>
+          
+                  <div class="row">
+          
+                      <div class="col-xs-6 col-sm-6 col-md-6">
+                          <div class="form-group">
+                              <label for="hourex">Hora de Salida:</label>
+                          {{form.hoursEx}}
+                          </div>
+                      </div>
+          
+
+          
+                  </div>
+                  <div class="row">
+
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                  <div class="form-group">
+                      <label for="">Empleado a visitar:</label>
+               {{form.empleado}}
+                  </div> </div>
+                  <div class="col-xs-6 col-sm-6 col-md-6">
+                  <div class="form-group">
+                      <label for="contraseña">Oficina:</label>
+                      {{form.oficina}}
+                  </div>  </div>
                 </div>
-              </form>
+                  <div class="row">
+                    
+          
+                      <div class="col">
+          
+                          <div class="form-group">
+                              <label for="obs">Observaciones:</label>
+                             {{form.obs}}
+                          </div>
+          
+                      </div>
+                  </div>
+          
+                  <div class="row">
+                      <div class="col-xs-6 col-md-6"><input type="submit" value="Guardar" class="btn btn-danger btn-block btn-lg" tabindex="7"
+                          title="Guardar datos ingresados"></div>
+          
+                     
+                  </div>
+          </form>
+      
+
+     
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+  {{ form.media.css }}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  {{ form.media.js }}
 {% endblock %}

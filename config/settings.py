@@ -30,6 +30,7 @@ DJANGO_APPS = [
 LOCAL_APPS= [
         'apps.dashboard',
         'apps.gav',
+        'salasituacional',
     
 ]
 
@@ -38,6 +39,7 @@ OTHER_APPS = [
     'allauth.account',
      'crispy_forms',
     'crispy_bootstrap5', 
+   
 
 ]
 

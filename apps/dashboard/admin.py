@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Profile, Oficina,  Empresa, Empleado,Cargo
+from .models import Profile, Oficina,  Empresa, Empleado
 # Register your models here.
 
 admin.site.register(Profile)
@@ -18,7 +18,3 @@ class GestionEmpresa(admin.ModelAdmin):
    list_display = ( 'id','nempresa', 'imgref', )
    list_display_links = ('nempresa',)
 
-@admin.register(Cargo)
-class GestionCargo(admin.ModelAdmin):
-    list_display = ('cargo',)
-    list_display_links = ('cargo',)

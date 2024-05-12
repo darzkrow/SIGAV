@@ -34,7 +34,7 @@ class PersonForms(forms.ModelForm):
 
         # Deshabilitar los campos Dni y photo si ya existe una instancia
         if self.instance.pk:
-            self.fields['dni'].disabled = False
+            self.fields['dni'].disabled = True
           
     # Sobrescribe el método clean para mostrar errores personalizados
     def clean(self):
@@ -58,14 +58,13 @@ class PersonForms(forms.ModelForm):
 class AccessForms(forms.ModelForm):
     class Meta:
         model = Avisitantes
-        fields = ['entry','hours','hoursEx', 'empleado', 'oficina','cargo','obs']
+        fields = ['entry','hours','hoursEx', 'empleado', 'oficina','obs']
         widgets = {
             'entry': forms.DateInput(attrs={'type': 'date','class': 'form-control'}),
             'hours': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
             'hoursEx': forms.TimeInput(attrs={'type': 'time','class': 'form-control'}),
             'empleado': forms.Select(attrs={'class': 'form-control'}),
             'oficina': forms.Select(attrs={'class': 'form-control'}),
-            'cargo': forms.Select(attrs={'class': 'form-control'}),
             'obs': forms.Textarea(attrs={'class': 'form-control'}),
            
         }
@@ -75,10 +74,9 @@ class AccessForms(forms.ModelForm):
             self.fields['entry'].widget = forms.TextInput(attrs={'class': 'form-control', 'readonly': 'readonly'})
             self.fields['entry'].widget.attrs['readonly'] = True 
             self.fields['hours'].widget.attrs['readonly'] = True 
-            self.fields['empleado'].widget.attrs['disabled'] = True 
-            self.fields['oficina'].widget.attrs['disabled'] = True 
-            self.fields['cargo'].widget.attrs['disabled'] = True 
-
+            self.fields['empleado'].widget.attrs['readonly'] = True 
+            self.fields['oficina'].widget.attrs['readonly'] = True 
+    
     def clean(self):
         cleaned_data = super().clean()
         if self.instance.id:
