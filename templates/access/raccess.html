@@ -60,79 +60,43 @@
               <h5 class="m-0">REGISTAR UN NUEVO ACCESO A LA SEDE </h5>
             </div>
             <div class="card-body">
-              <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-                  <div class="row">
-                      <div class="col-xs-6 col-sm-6 col-md-6">
-                          <div class="form-group">
-                              <label for="nombre">Fecha:</label>
-                   {{form.entry}}
-                          </div>
-                      </div>
-          
-                      <div class="col-xs-6 col-sm-6 col-md-6">
-                          <div class="form-group">
-                              <label for="apellido">Hora de Entrada:</label>
-                             {{form.hours}}
-                          </div>
-                      </div>
-                  </div>
-          
-                  <div class="row">
-          
-                      <div class="col-xs-6 col-sm-6 col-md-6">
-                          <div class="form-group">
-                              <label for="hourex">Hora de Salida:</label>
-                          {{form.hoursEx}}
-                          </div>
-                      </div>
-          
-
-          
-                  </div>
-                  <div class="row">
-
-                    <div class="col-xs-6 col-sm-6 col-md-6">
-                  <div class="form-group">
-                      <label for="">Empleado a visitar:</label>
-               {{form.empleado}}
-                  </div> </div>
-                  <div class="col-xs-6 col-sm-6 col-md-6">
-                  <div class="form-group">
-                      <label for="contraseña">Oficina:</label>
-                      {{form.oficina}}
-                  </div>  </div>
-                </div>
-                  <div class="row">
-                    
-          
-                      <div class="col">
-          
-                          <div class="form-group">
-                              <label for="obs">Observaciones:</label>
-                             {{form.obs}}
-                          </div>
-          
-                      </div>
-                  </div>
-          
-                  <div class="row">
-                      <div class="col-xs-6 col-md-6"><input type="submit" value="Guardar" class="btn btn-danger btn-block btn-lg" tabindex="7"
-                          title="Guardar datos ingresados"></div>
-          
-                     
-                  </div>
-          </form>
-      
-
+             
      
+              <form method='POST'>
+                {%csrf_token%}
+                <div class="form-row">
+                  <div class="col">
+                    {{ form.entry|as_crispy_field }}
+                  </div>
+                  <div class="col">
+                    {{ form.hours|as_crispy_field }}
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="col">
+                    {{ form.hoursEx|as_crispy_field }}
+                  </div>
+                  <div class="col">
+                    {{ form.empleado|as_crispy_field }}
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="col">
+                    {{ form.oficina|as_crispy_field }}
+                  </div>
+                  <div class="col">
+                    {{ form.obs|as_crispy_field }}
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary"> Guardar Acceso</button>
+                <a  href="{%url 'search'%}"class="btn btn-xs  btn-danger"> Cancelar</a>
+              </form>
+
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  {{ form.media.css }}
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  {{ form.media.js }}
+
 {% endblock %}

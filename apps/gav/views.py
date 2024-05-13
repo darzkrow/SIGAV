@@ -129,6 +129,7 @@ def raccess(request, dni):
     person_access = get_object_or_404(Personas,dni=dni)
     if request.method == 'POST':
         form = AccessForms(request.POST)
+        # form = AccessForms(instance=person_access)
         if form.is_valid():
             access = form.save(commit=False)
             now = timezone.localtime()
