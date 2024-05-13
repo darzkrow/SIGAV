@@ -37,9 +37,9 @@ LOCAL_APPS= [
 OTHER_APPS = [
     'allauth',
     'allauth.account',
-     'crispy_forms',
+    'crispy_forms',
     'crispy_bootstrap5', 
-   
+    'phonenumber_field',
 
 ]
 
