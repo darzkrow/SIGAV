@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, get_list_or_404, get_object_or_40
 from django.contrib.auth.decorators import login_required, permission_required
 from .forms import PersonForms, AccessForms, SearchForm
 from .models import Personas, Avisitantes
+from datetime import datetime, date
 from django.utils import timezone
 # Create your views here.
 
@@ -142,7 +143,6 @@ def raccess(request, dni):
     else:
         form = AccessForms
     return render(request,'access/raccess.html',{'form':form, 'person_access':person_access})
-
 
 
 @login_required

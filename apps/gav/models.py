@@ -3,31 +3,18 @@ from django.conf import settings
 from django.core.validators import MinLengthValidator
 from apps.dashboard.models import Empleado, Oficina
 from django.utils.html import format_html
+from .choices import LIST_NAC ,LISTA_ESTATUS, GENDER_CHOICES
 # Create your models here.
 
 
 class Personas(models.Model):
-    LIST_NAC = [
-        ('VE', 'Venezolano'),
-        ('EX', 'Extranjero'),
-    ]
-    Lista_status = [('F', 'FAMILIAR'),
-                    ('E', 'EGRESADO'),
-                    ('J', 'JUBILADO'),
-                    ('C', 'CONTRATISTA'),
-                    ('M', 'MISC'),
-                    ]
-    status = models.CharField(
-        'Tipo de visitante', max_length=1, choices=Lista_status, null=False, default='M')
-    nac = models.CharField('Nacionalidad', max_length=2, choices=LIST_NAC, null=True, blank=True)
     dni = models.CharField('Cedula', primary_key=True,  max_length=8,validators=[MinLengthValidator(6)])
+    status = models.CharField('Tipo de visitante', max_length=1, choices=LISTA_ESTATUS, null=False, default='M')
+    nac = models.CharField('Nacionalidad', max_length=2, choices=LIST_NAC, null=True, blank=True)
+
     first_name = models.CharField('Nombre', max_length=40,validators=[MinLengthValidator(3)])
     last_name = models.CharField('Apellido', max_length=40,validators=[MinLengthValidator(3)])
-    GENDER_CHOICES = [
-        ('M', 'Masculino'),
-        ('F', 'Femenino'),
-    ]
-    gender = models.CharField('Género', max_length=1, choices=GENDER_CHOICES, null=True, blank=True)
+    gender = models.CharField('Género', max_length=1, choices=GENDER_CHOICES, default='B')
 
     class Meta:
         verbose_name = "Personas"
@@ -47,7 +34,6 @@ class Avisitantes(models.Model):
     hoursEx = models.TimeField('Hora de Salida', null=True, blank=True)
     empleado = models.ForeignKey(Empleado, on_delete=models.CASCADE, verbose_name='Nombre del Empleados')
     oficina = models.ForeignKey(Oficina, on_delete=models.CASCADE, verbose_name='Oficina a Visitar')
-
     obs = models.TextField('Observaciones', max_length=140, null=True, blank=True)
 
     class Meta:

@@ -43,10 +43,10 @@
                   <b>Cedula:</b> <a class="float-right">{{ person.dni }}</a>
                 </li>
                 <li class="list-group-item">
-                  <b>Nombre:</b> <a class="float-right">{{ person.first_name|upper }}</a>
+                  <b>Nombre:</b> <a class="float-right">{{ person.first_name}}</a>
                 </li>
                 <li class="list-group-item">
-                  <b>Apellido:</b> <a class="float-right">{{ person.last_name|upper }}</a>
+                  <b>Apellido:</b> <a class="float-right">{{ person.last_name}}</a>
                 </li>
               </ul>
 
@@ -88,7 +88,7 @@
                     {% endif %}
                       <td>
                       <a class="btn btn-sm btn-success" href="{%url 'daccess' pk=x.id%}"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                      <a class="btn btn-sm btn-info" href="{%url 'eaccess' pk=x.id%}"><i class="fas fa-hourglass-start" aria-hidden="true"></i>
+                      <a class="btn btn-sm btn-info" href="{%url 'eaccess' pk=x.id%}"><i class="fas fa-edit"></i>
          
                       </td>
                     </tr>

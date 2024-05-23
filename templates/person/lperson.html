@@ -56,8 +56,10 @@
                       {%load static%}
                       <td>  {% if person.gender == 'M' %}
                         <i class="fas fa-mars" style="color :blue"> </i> {{ person.get_gender_display}}
-              {% else %}
+             {% elif person.gender == 'F' %}
               <i class="fas fa-venus" style="color:pink"> </i> {{ person.get_gender_display}}
+              {%else%}
+              <i class="fas fa-user-secret">  </i> {{ person.get_gender_display}}
       {% endif %}
     </td>
                       <td>
