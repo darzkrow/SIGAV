@@ -1,17 +1,13 @@
 from django.db import models
-from django.conf import settings
 from django.core.validators import MinLengthValidator
 from apps.dashboard.models import Empleado, Oficina
-from django.utils.html import format_html
 from .choices import LIST_NAC ,LISTA_ESTATUS, GENDER_CHOICES
 # Create your models here.
-
 
 class Personas(models.Model):
     dni = models.CharField('Cedula', primary_key=True,  max_length=8,validators=[MinLengthValidator(6)])
     status = models.CharField('Tipo de visitante', max_length=1, choices=LISTA_ESTATUS, null=False, default='M')
     nac = models.CharField('Nacionalidad', max_length=2, choices=LIST_NAC, null=True, blank=True)
-
     first_name = models.CharField('Nombre', max_length=40,validators=[MinLengthValidator(3)])
     last_name = models.CharField('Apellido', max_length=40,validators=[MinLengthValidator(3)])
     gender = models.CharField('Género', max_length=1, choices=GENDER_CHOICES, default='B')
@@ -24,9 +20,7 @@ class Personas(models.Model):
    
     def __str__(self):
         return f"{self.dni}"
-    
- 
-    
+
 class Avisitantes(models.Model):
     visitor = models.ForeignKey(Personas, on_delete=models.CASCADE)
     entry = models.DateField('Fecha del Dia')
